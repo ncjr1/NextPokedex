@@ -1,20 +1,26 @@
 import Title from "./Title"
-import useSWR from "swr"
 import Image from "./Image"
 import Type from "./PokemonType"
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+import { useState } from 'react'
+import getPokemon from './API/usePokemon'
 
 export default function Card({children, Url, Number, ...props}) {
     const CardStyle = "text-shadow: 2px 1px 2px black; color:white"
-    const { data, error } = useSWR(`${Url}`, fetcher)
-    const CardClassName = `card-${props.Number}`; 
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+    const CardClassName = `card-${props.Number}`;
+    const pokemonData  = getPokemon(`${Url}`);
+    const [ pokemon , setPokemon ] = useState({
+        Name: props.Title,
+        Url: Url,
+        Image : pokemonData.Image,
+        Types: pokemonData.Types
+    });
+
+
     return (
     <>
         <div className={CardClassName}>
             <div className="card-title">
-                <Title as="p" style={CardStyle}>{props.Title}</Title>
+                <Title as="p" style={CardStyle}>{pokemon.Name}</Title>
             </div>
             <div className="poke-top">
                 <div className="poke-line"></div>
@@ -23,9 +29,9 @@ export default function Card({children, Url, Number, ...props}) {
                 </div>
             </div>
             <div className="card-body">
-                <Image Url={data.sprites.front_default} style="width: 75%; height: 75%;" alt={props.Title}></Image>
+                <Image Url={pokemon.Image} style="width: 75%; height: 75%;" alt={pokemon.Name}></Image>
                 <div className="card-footer">
-                    {data.types.map((Index) => { return <Type type={Index.type.name}>{Index.type.name}</Type> })}
+                    {pokemon.Types.map((Index) => { return <Type type={Index.type.name}>{Index.type.name}</Type> })}
                 </div>
             </div>
         </div>
@@ -88,19 +94,4 @@ export default function Card({children, Url, Number, ...props}) {
         `}</style>
     </>
     );
-}
-
-export async function getStaticProps (context) {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`)
-    const data = await res.json()
-  
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
-    return {
-      props: { pokemons : data.results }, // will be passed to the page component as props
-    }
 }

@@ -8,19 +8,18 @@ export default function Card({children, Url, Number, ...props}) {
     const CardStyle = "text-shadow: 2px 1px 2px black; color:white"
     const CardClassName = `card-${props.Number}`;
     const pokemonData  = getPokemon(`${Url}`);
-    const [ pokemon , setPokemon ] = useState({
-        Name: props.Title,
-        Url: Url,
-        Image : pokemonData.Image,
-        Types: pokemonData.Types
-    });
-
-
+    const [ pokemon , setPokemon ] = useState([{
+        Name : props.Title,
+        Url : Url,
+        Image: pokemonData.Image,
+        Types : pokemonData.Types
+    }]);
+    console.log(pokemon);
     return (
     <>
         <div className={CardClassName}>
             <div className="card-title">
-                <Title as="p" style={CardStyle}>{pokemon.Name}</Title>
+                <Title as="p" style={CardStyle}>{pokemon[0].Name}</Title>
             </div>
             <div className="poke-top">
                 <div className="poke-line"></div>
@@ -29,9 +28,9 @@ export default function Card({children, Url, Number, ...props}) {
                 </div>
             </div>
             <div className="card-body">
-                <Image Url={pokemon.Image} style="width: 75%; height: 75%;" alt={pokemon.Name}></Image>
+                <Image Url={pokemon[0].Image} style="width: 75%; height: 75%;" alt={pokemon[0].Name}></Image>
                 <div className="card-footer">
-                    {pokemon.Types.map((Index) => { return <Type type={Index.type.name}>{Index.type.name}</Type> })}
+                    {pokemon[0].Types.map((Index) => { return <Type type={Index.type.name}>{Index.type.name}</Type> })}
                 </div>
             </div>
         </div>

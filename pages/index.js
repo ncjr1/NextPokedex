@@ -7,7 +7,7 @@ function Home({ pokemons }) {
   return (
   <>
     <div id="home">
-      {pokemons.map((pokemon) => { return <Card Title={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} Url={pokemon.url} Number={pokemon.url.slice(33, 38).replaceAll("/", "")}></Card>})}
+      {pokemons.map((pokemon) => { return <Card Key={pokemon.name} Title={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} Url={pokemon.url} Number={pokemon.url.slice(33, 38).replaceAll("/", "")}></Card>})}
     </div>
     <style jsx>{`
       #home {

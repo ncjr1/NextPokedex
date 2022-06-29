@@ -9,6 +9,7 @@ export default function Document() {
            href="../assets/Fonts/Pokemon.ttf"
            rel="stylesheet"
          />
+        <title>Pokédex</title>
       </Head>
       <body>
         <Main />

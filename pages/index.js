@@ -14,6 +14,7 @@ function Home({ pokemons }) {
         display: flex;
         justify-content: space-around;
         flex-flow: row wrap;
+        margin-top: 2%;
       }
     `}</style>
   </>
@@ -21,7 +22,7 @@ function Home({ pokemons }) {
 }
 
 export async function getStaticProps (context) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10`)
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`)
   const data = await res.json()
   if (!data) {
     return {

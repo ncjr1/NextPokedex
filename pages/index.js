@@ -36,11 +36,7 @@ function Home({ pokemons, ...props }) {
 }
 
 export async function getStaticProps (context) {
-<<<<<<< HEAD
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=300`)
-=======
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`)
->>>>>>> 4baa39bec7ec505d71916f3396209f692419be2b
   const data = await res.json()
   if (!data) {
     return {

@@ -9,9 +9,9 @@ function Home({ pokemons, ...props }) {
   const [ filter, setFilter ] = useState('');
   return (
   <div>
-    <div id="search">
+    {/* <div id="search">
       <input key="searchBar" type="text" placeholder="Filter Pokemon by Name" value={filter} onChange={(e) => { setFilter(e.target.value) } } style={{ width: 340 + 'px'}}></input>
-    </div>
+    </div> */}
     <div id="home">
       {pokemonList.filter(pokemon => pokemon.name.includes(filter) || filter === "").map((pokemon) => { return <Card key={pokemon.url} Title={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} Url={pokemon.url} Number={pokemon.url.slice(33, 38).replaceAll("/", "")}></Card>})}
     </div>

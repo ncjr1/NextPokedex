@@ -7,7 +7,7 @@ function CardBody({ Url, Name, ...props}) {
     if(isLoading) return <Loading></Loading>
     return (
         <div className="card-body">
-            <Image Url={data.Image} style="width: 75%; height: 75%;" alt={Name}></Image>
+            <Image key={data.Image} Url={data.Image} style="width: 75%; height: 75%;" alt={Name}></Image>
             <div className="card-footer">
                 {data.Types.map((Index) => { return <Type key={Index.type.name} type={Index.type.name}>{Index.type.name}</Type> })}
             </div>

@@ -8,8 +8,8 @@ export default function PokemonType({ type, children }) {
     return (
     <>
         <div id="type-card">
-            <Image Url={svgUrl} style="width: 15%; height: 15%;"></Image>
-            <Title as="p" style={titleStyle}>{children.charAt(0).toUpperCase() + children.slice(1)}</Title>
+            <Image key={svgUrl} Url={svgUrl} style="width: 15%; height: 15%;"></Image>
+            <Title key={children.charAt(0).toUpperCase()} as="p" style={titleStyle}>{children.charAt(0).toUpperCase() + children.slice(1)}</Title>
         </div>
         <style jsx>{`
             #type-card{

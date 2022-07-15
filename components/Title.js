@@ -1,4 +1,4 @@
-export default function({children, as, style}) {
+export default function Title({children, as, style}) {
     const Tag = as;
     return (
         <div>

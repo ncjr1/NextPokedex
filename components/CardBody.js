@@ -9,7 +9,7 @@ function CardBody({ Url, Name, ...props}) {
         <div className="card-body">
             <Image Url={data.Image} style="width: 75%; height: 75%;" alt={Name}></Image>
             <div className="card-footer">
-                {data.Types.map((Index) => { return <Type type={Index.type.name}>{Index.type.name}</Type> })}
+                {data.Types.map((Index) => { return <Type key={Index.Type.name} type={Index.type.name}>{Index.type.name}</Type> })}
             </div>
             <style jsx>{`
                 .card-footer{

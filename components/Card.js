@@ -15,7 +15,7 @@ export default function Card({children, Url, Number, ...props}) {
     <>
         <div className="card">
             <div className="card-title">
-                <Title as="p" style={CardStyle}>{pokemon.Name}</Title>
+                <Title key={pokemon.Name} as="p" style={CardStyle}>{pokemon.Name}</Title>
             </div>
             <div className="poke-top">
                 <div className="poke-line"></div>
@@ -23,7 +23,7 @@ export default function Card({children, Url, Number, ...props}) {
                     <div className="poke-btn-outer"></div>
                 </div>
             </div>
-            { pokemon.isClicked == 0 ? <CardBody Url={pokemon.Url} Name={pokemon.Name}></CardBody> : <></> }
+            { pokemon.isClicked == 0 ? <CardBody key={pokemon.Url} Url={pokemon.Url} Name={pokemon.Name}></CardBody> : <></> }
         </div>
         <style jsx>{`
             .card {
